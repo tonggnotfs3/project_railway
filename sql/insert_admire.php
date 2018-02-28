@@ -14,7 +14,7 @@ $tel = $_POST['tel'];
 $email = $_POST['email'];
 $detail = $_POST['detail'];
 
-		$sql = "INSERT INTO `sugform` (`name_sug`, `idcard_sug`, `address_sug`, `province_sug`, `districts_sug`, `amphur_sug`, `tel_sug`, `email_sug`, `detail_sug`, `sug_status`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$tel','$email','$detail', '1');";
+		$sql = "INSERT INTO `admireform` (`name_admire`, `idcard_admire`, `address_admire`, `province_id`, `districts_id`, `amphur_id`, `tel_admire`, `detail_admire`, `email_admire`, `admire_status`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$tel','$detail','$email', '1');";
 		$data = mysqli_query($conn,$sql);
 
 
