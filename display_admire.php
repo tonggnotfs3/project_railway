@@ -61,13 +61,13 @@
                   <?php while($row=$result->fetch_assoc()){?>
                   <tr>
                     <td>
-                      <?php echo $row['name_sug'];?>
+                      <?php echo $row['name_admire'];?>
                     </td>
                     <td>
-                      <?php echo $row['idcard_sug'];?>
+                      <?php echo $row['idcard_admire'];?>
                     </td>
                     <td>
-                      <?php echo $row['address_sug'];?>
+                      <?php echo $row['address_admire'];?>
                     </td>
                     <td>
                       <?php echo $row['PROVINCE_NAME'];?>
@@ -79,13 +79,13 @@
                       <?php echo $row['DISTRICT_NAME'];?>
                     </td>
                     <td>
-                      <?php echo $row['tel_sug'];?>
+                      <?php echo $row['tel_admire'];?>
                     </td>
                     <td>
-                      <?php echo $row['email_sug'];?>
+                      <?php echo $row['email_admire'];?>
                     </td>
                     <td>
-                      <?php echo $row['detail_sug'];?>
+                      <?php echo $row['detail_admire'];?>
                     </td>
                   </tr>
                   <?php } ?>
@@ -98,30 +98,6 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('#formcomplain').submit(function() {
-          var fData = new FormData(document.getElementById("formcomplain"));
-          $.ajax({
-            'type': "POST",
-            'url': "sql/insert_complain.php",
-            'data': fData,
-            'contentType': false,
-            'processData': false,
-            'cache': false,
-            'success': function(data) {
-              window.location = "complaintnaja2.php";
-            },
-            'error': function(jqXHR, text, error) {
-              alert(error);
-            }
-          });
-          return false;
-
-        });
-      });
-    </script>
-
     <script>
       $(document).ready(function() {
         $('.table').DataTable({
