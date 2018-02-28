@@ -106,29 +106,6 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('#formcomplain').submit(function() {
-          var fData = new FormData(document.getElementById("formcomplain"));
-          $.ajax({
-            'type': "POST",
-            'url': "sql/insert_complain.php",
-            'data': fData,
-            'contentType': false,
-            'processData': false,
-            'cache': false,
-            'success': function(data) {
-              window.location = "complaintnaja2.php";
-            },
-            'error': function(jqXHR, text, error) {
-              alert(error);
-            }
-          });
-          return false;
-
-        });
-      });
-    </script>
 
     <script>
       $(document).ready(function() {
