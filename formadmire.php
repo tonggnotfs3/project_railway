@@ -128,15 +128,15 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-3" for="username">เลขที่บัตรประชาชน:</label>
+                <label class="control-label col-sm-3" for="idcard">เลขที่บัตรประชาชน:</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="username" id="username">
+                  <input type="text" class="form-control" name="idcard" id="idcard">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-3" for="username">ที่อยู่ บ้านเลขที่:</label>
+                <label class="control-label col-sm-3" for="address">ที่อยู่ บ้านเลขที่:</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="username" id="username">
+                  <input type="text" class="form-control" name="address" id="address">
                 </div>
               </div>
               <div class="form-group">
@@ -161,21 +161,21 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-3" for="username">เบอร์โทร:</label>
+                <label class="control-label col-sm-3" for="tel">เบอร์โทร:</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="username" id="username">
+                  <input type="text" class="form-control" name="tel" id="tel">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-3" for="username">E-mail:</label>
+                <label class="control-label col-sm-3" for="email">E-mail:</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="username" id="username">
+                  <input type="text" class="form-control" name="email" id="email">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-3" for="service">ลายละเอียด:</label>
+                <label class="control-label col-sm-3" for="detail">ลายละเอียด:</label>
                 <div class="col-md-4">
-                  <textarea class="form-control" id="service" name="service">
+                  <textarea class="form-control" id="detail" name="detail">
             </textarea >
             </div>
             </div>
@@ -197,7 +197,7 @@
             var fData = new FormData(document.getElementById("admireform"));
              $.ajax({
       'type':"POST",
-      'url':"sql/insert_dager.php",
+      'url':"sql/insert_admire.php",
       'data':fData,
       'contentType':false,
       'processData':false,
