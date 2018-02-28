@@ -29,7 +29,7 @@
   <?php
     include("menu.php");
     require_once 'connect.php';
-    $sql="SELECT admireform.name_admire,admireform.idcard_admire,admireform.address_admire admireform.tel_admire,admireform.detail_admire,admireform.email_admire,province.PROVINCE_NAME,districts.DISTRICT_NAME amphur.AMPHUR_NAME FROM admireform,amphur,districts,province WHERE admireform.province_id = province.PROVINCE_ID AND admireform.districts_id = districts.DISTRICT_ID AND amphur.AMPHUR_ID = admireform.amphur_id";
+    $sql="SELECT SELECT admireform.name_admire,admireform.idcard_admire,admireform.address_admire, admireform.tel_admire,admireform.detail_admire,admireform.email_admire,province.PROVINCE_NAME,districts.DISTRICT_NAME, amphur.AMPHUR_NAME FROM admireform,amphur,districts,province WHERE admireform.province_id = province.PROVINCE_ID AND admireform.districts_id = districts.DISTRICT_ID AND amphur.AMPHUR_ID = admireform.amphur_id";
     $result=$conn->query($sql);
     ?>
     <div class="container">
