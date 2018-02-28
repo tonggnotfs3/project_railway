@@ -64,7 +64,7 @@
                       <?php echo $row['name_admire'];?>
                     </td>
                     <td>
-                      <?php echo $row['	idcard_admire'];?>
+                      <?php echo $row['idcard_admire'];?>
                     </td>
                     <td>
                       <?php echo $row['address_admire'];?>
@@ -85,7 +85,7 @@
                       <?php echo $row['email_admire'];?>
                     </td>
                     <td>
-                      <?php echo $row['	detail_admire'];?>
+                      <?php echo $row['detail_admire'];?>
                     </td>
                   </tr>
                   <?php } ?>
