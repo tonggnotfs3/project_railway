@@ -87,6 +87,12 @@
                     <td>
                       <?php echo $row['detail_dager'];?>
                     </td>
+                    <td>
+                      <?php echo $row['detail_dager'];?>
+                    </td>
+                    <td>
+                      <?php echo $row['detail_dager'];?>
+                    </td>
                   </tr>
                   <?php } ?>
                 </tbody>
