@@ -29,7 +29,8 @@
   <?php
     include("menu.php");
     require_once 'connect.php';
-    $sql="SELECT complaintform.complaint_name,complaintform.personal_id,complaintform.address,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,complaintform.tel,complaintform.email, complainttype.complaint_code,service.service_code,complaintform.description,complaintform.complaintform_id,complaintform.status FROM complaintform,complainttype,amphur,province,districts,service WHERE complaintform.province_id = province.PROVINCE_ID AND districts.DISTRICT_ID = complaintform.districts_id AND amphur.AMPHUR_ID = complaintform.amphur_id AND complaintform.complainttype_id = complainttype.complainttype_id AND complaintform.service_id = service.service_id";
+    $responsible= $_GET['responsible'];
+    $sql="SELECT complaintform.complaint_name,complaintform.personal_id,complaintform.address,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,complaintform.tel,complaintform.email, complainttype.complaint_code,service.service_code,complaintform.description,complaintform.complaintform_id,complaintform.status FROM complaintform,complainttype,amphur,province,districts,service WHERE complaintform.province_id = province.PROVINCE_ID AND districts.DISTRICT_ID = complaintform.districts_id AND amphur.AMPHUR_ID = complaintform.amphur_id AND complaintform.complainttype_id = complainttype.complainttype_id AND complaintform.service_id = service.service_id AND responsible = $responsible";
     $result=$conn->query($sql);
     ?>
     <div class="container">
