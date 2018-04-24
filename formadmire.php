@@ -203,7 +203,7 @@
       'processData':false,
       'cache':false,
       'success':function(data) {
-        window.location="display_admire.php";
+        // window.location="display_admire.php";
       },
       'error':function(jqXHR,text,error) { alert(error); }
     });

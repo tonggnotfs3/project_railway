@@ -219,7 +219,7 @@
         'processData':false,
         'cache':false,
         'success':function(data) {
-          window.location="display_complain.php";
+          // window.location="display_complain.php";
         },
         'error':function(jqXHR,text,error) { alert(error); }
       });
