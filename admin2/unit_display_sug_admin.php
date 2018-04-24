@@ -1,4 +1,4 @@
-responsible <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -139,7 +139,7 @@ responsible <!DOCTYPE html>
               var fData = new FormData(document.getElementById("changsug"));
                $.ajax({
         'type':"POST",
-        'url':"updateSug.php",
+        'url':"statusupdateSug.php",
         'data':fData,
         'contentType':false,
         'processData':false,

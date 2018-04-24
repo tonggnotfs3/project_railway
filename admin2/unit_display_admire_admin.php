@@ -38,8 +38,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="panel-title">
-            <h4><span class="glyphicon glyphicon-th-list
-              " aria-hidden="true"></span> ข้อมูลคำแนะนำ</h4>
+            <h4><span class="glyphicon glyphicon-th-list"aria-hidden="true"></span> ข้อมูลคำแนะนำ</h4>
             </div>
           </div>
           <div class="panel-body">
@@ -139,7 +138,7 @@
             var fData = new FormData(document.getElementById("changadmire"));
              $.ajax({
       'type':"POST",
-      'url':"updateAdmire.php",
+      'url':"statusupdateAdmire.php",
       'data':fData,
       'contentType':false,
       'processData':false,

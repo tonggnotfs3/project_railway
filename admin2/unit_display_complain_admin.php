@@ -148,7 +148,7 @@
               var fData = new FormData(document.getElementById("changcomp"));
                $.ajax({
         'type':"POST",
-        'url':"updateComplaint.php",
+        'url':"statusupdateComplaint.php",
         'data':fData,
         'contentType':false,
         'processData':false,

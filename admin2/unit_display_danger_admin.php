@@ -137,7 +137,7 @@
               var fData = new FormData(document.getElementById("changdanger"));
                $.ajax({
         'type':"POST",
-        'url':"updateDanger.php",
+        'url':"statusupdateDanger.php",
         'data':fData,
         'contentType':false,
         'processData':false,
