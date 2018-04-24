@@ -22,14 +22,33 @@
     <![endif]-->
 
     <?php
-      require_once '../connect.php';
+      require_once 'connect.php';
+
+      $sql1 = "SELECT COUNT(*) c FROM admireform";
+      $result1=$conn->query($sql1);
+      $row1=$result1->fetch_assoc();
+
+
+      $sql2 = "SELECT COUNT(*) c FROM complaintform";
+      $result2=$conn->query($sql2);
+      $row2=$result2->fetch_assoc();
+
+
+      $sql4 = "SELECT COUNT(*) c FROM sugform";
+      $result4=$conn->query($sql4);
+      $row4=$result4->fetch_assoc();
+
+
+      $sql3 = "SELECT COUNT(*) c FROM dagerform";
+      $result3=$conn->query($sql3);
+      $row3=$result3->fetch_assoc();
 
     ?>
   </head>
   <body>
     <?php include("menu.php"); ?>
     <div class="container">
-      <div class="col-md-3"><?php include("../side-menu.php"); ?></div>
+      <div class="col-md-3"><?php include("side-menu-admin-index.php"); ?></div>
       <div  id="demo" class="col-md-9">
         <div class="row">
             <div class="col-md-3">
@@ -38,7 +57,7 @@
                         <div class="media-left meida media-middle">
                         </div>
                         <div class="media-body media-text-right">
-                            <h2 class="color-white">278</h2>
+                            <h2 class="color-white"><?php echo $row2['c']; ?></h2>
                             <p class="m-b-0">เรื่องร้องเรียน</p>
                         </div>
                     </div>
@@ -50,7 +69,7 @@
                         <div class="media-left meida media-middle">
                         </div>
                         <div class="media-body media-text-right">
-                            <h2 class="color-white">278</h2>
+                            <h2 class="color-white"><?php echo $row4['c']; ?></h2>
                             <p class="m-b-0">คำแนะนำ</p>
                         </div>
                     </div>
@@ -62,7 +81,7 @@
                         <div class="media-left meida media-middle">
                         </div>
                         <div class="media-body media-text-right">
-                            <h2 class="color-white">$27647</h2>
+                            <h2 class="color-white"><?php echo $row3['c']; ?></h2>
                             <p class="m-b-0">การแจ้งเหตุอัตราย</p>
                         </div>
                     </div>
@@ -74,8 +93,8 @@
                         <div class="media-left meida media-middle">
                         </div>
                         <div class="media-body media-text-right">
-                            <h2 class="color-white">278</h2>
-                            <p class="m-b-0">คำชื่อชำ</p>
+                            <h2 class="color-white"><?php echo $row1['c']; ?></h2>
+                            <p class="m-b-0">คำชื่นชม</p>
                         </div>
                     </div>
                 </div>
