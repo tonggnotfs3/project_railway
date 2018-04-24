@@ -29,7 +29,7 @@
   <?php
   include("menu.php");
   require_once 'connect.php';
-  $sql="SELECT admireform.name_admire,admireform.idcard_admire,admireform.address_admire, admireform.tel_admire,admireform.detail_admire,admireform.email_admire,province.PROVINCE_NAME,districts.DISTRICT_NAME, amphur.AMPHUR_NAME FROM admireform,amphur,districts,province WHERE admireform.province_id = province.PROVINCE_ID AND admireform.districts_id = districts.DISTRICT_ID AND amphur.AMPHUR_ID = admireform.amphur_id";
+  $sql="SELECT admireform.name_admire,admireform.idcard_admire,admireform.address_admire, admireform.tel_admire,admireform.detail_admire,admireform.email_admire,province.PROVINCE_NAME,districts.DISTRICT_NAME, amphur.AMPHUR_NAME,admireform.admire_id,admireform.responsible FROM admireform,amphur,districts,province WHERE admireform.province_id = province.PROVINCE_ID AND admireform.districts_id = districts.DISTRICT_ID AND amphur.AMPHUR_ID = admireform.amphur_id";
   $result=$conn->query($sql);
   ?>
   <div class="container">
@@ -43,6 +43,7 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <form name="changadmire" id="changadmire">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -55,12 +56,18 @@
                     <th>เบอร์โทร</th>
                     <th>E-mail</th>
                     <th>ลายละเอียด</th>
+                    <th>หน่วยงานที่เกียวข้อง</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while($row=$result->fetch_assoc()){?>
+                  <?php
+                    $i =0;
+                    while($row=$result->fetch_assoc()){
+                    $i = $i + 1;
+                    ?>
                     <tr>
                       <td>
+                        <input type="hidden" name="hdnID<?=$i;?>" size="5" value="<?=$row['admire_id'];?>">
                         <?php echo $row['name_admire'];?>
                       </td>
                       <td>
@@ -87,11 +94,17 @@
                       <td>
                         <?php echo $row['detail_admire'];?>
                       </td>
+                      <td>
+                        <?php require 'selectunit.php'; ?>
+                      </td>
                     </tr>
                   <?php } ?>
                 </tbody>
 
               </table>
+              <div align="right"><button align="" type="submit" class="btn btn-default">บันทึก</button></div>
+              <input type="hidden" name="hdnLine" value="<?=$i;?>">
+            </form>
             </div>
 
           </div>
@@ -118,6 +131,27 @@
         }
       });
     });
+
+
+    $(document).ready(function () {
+           $('#changadmire').submit(function() {
+            var fData = new FormData(document.getElementById("changadmire"));
+             $.ajax({
+      'type':"POST",
+      'url':"updateAdmire.php",
+      'data':fData,
+      'contentType':false,
+      'processData':false,
+      'cache':false,
+      'success':function(data) {
+        alert("success");
+      },
+      'error':function(jqXHR,text,error) { alert(error); }
+    });
+    return false;
+
+          });
+      });
     </script>
   </body>
 
