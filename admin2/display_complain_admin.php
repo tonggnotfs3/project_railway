@@ -29,7 +29,7 @@
   <?php
     include("menu.php");
     require_once 'connect.php';
-    $sql="SELECT complaintform.complaint_name,complaintform.personal_id,complaintform.address,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,complaintform.tel,complaintform.email, complainttype.complaint_code,service.service_code,complaintform.description FROM complaintform,complainttype,amphur,province,districts,service WHERE complaintform.province_id = province.PROVINCE_ID AND districts.DISTRICT_ID = complaintform.districts_id AND amphur.AMPHUR_ID = complaintform.amphur_id AND complaintform.complainttype_id = complainttype.complainttype_id AND complaintform.service_id = service.service_id";
+    $sql="SELECT complaintform.complaint_name,complaintform.personal_id,complaintform.address,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,complaintform.tel,complaintform.email, complainttype.complaint_code,service.service_code,complaintform.description,complaintform.complaintform_id,complaintform.responsible FROM complaintform,complainttype,amphur,province,districts,service WHERE complaintform.province_id = province.PROVINCE_ID AND districts.DISTRICT_ID = complaintform.districts_id AND amphur.AMPHUR_ID = complaintform.amphur_id AND complaintform.complainttype_id = complainttype.complainttype_id AND complaintform.service_id = service.service_id";
     $result=$conn->query($sql);
     ?>
     <div class="container">
@@ -43,6 +43,7 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <form name="changcomp" id="changcomp">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -57,12 +58,18 @@
                     <th>ประเภท</th>
                     <th>หัวข้อ</th>
                     <th>ลายละเอียด</th>
+                    <th>หน่หน่วยงานที่เกียวข้อง</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while($row=$result->fetch_assoc()){?>
+                  <?php
+                    $i =0;
+                  while($row=$result->fetch_assoc()){
+                    $i = $i + 1;
+                    ?>
                   <tr>
                     <td>
+                      <input type="hidden" name="hdnID<?=$i;?>" size="5" value="<?=$row['complaintform_id'];?>">
                       <?php echo $row['complaint_name'];?>
                     </td>
                     <td>
@@ -95,11 +102,17 @@
                     <td>
                       <?php echo $row['description'];?>
                     </td>
+                    <td>
+                      <?php require 'selectunit.php'; ?>
+                    </td>
                   </tr>
                   <?php } ?>
                 </tbody>
 
               </table>
+              <div align="right"><button align="" type="submit" class="btn btn-default">บันทึก</button></div>
+              <input type="hidden" name="hdnLine" value="<?=$i;?>">
+            </form>
             </div>
 
           </div>
@@ -127,6 +140,27 @@
           }
         });
       });
+
+
+      $(document).ready(function () {
+             $('#changcomp').submit(function() {
+              var fData = new FormData(document.getElementById("changcomp"));
+               $.ajax({
+        'type':"POST",
+        'url':"updateComplaint.php",
+        'data':fData,
+        'contentType':false,
+        'processData':false,
+        'cache':false,
+        'success':function(data) {
+          alert("success");
+        },
+        'error':function(jqXHR,text,error) { alert(error); }
+      });
+      return false;
+
+            });
+        });
     </script>
 </body>
 

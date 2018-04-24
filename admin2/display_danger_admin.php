@@ -29,7 +29,7 @@
   <?php
     include("menu.php");
     require_once 'connect.php';
-    $sql="SELECT dagerform.name_dager, dagerform.idcard,dagerform.address_dager,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,dagerform.tel_dager,dagerform.detail_dager,dagerform.email_dager FROM dagerform,province,districts,amphur WHERE province.PROVINCE_ID = dagerform.province_id AND amphur.AMPHUR_ID = dagerform.amphur_id AND districts.DISTRICT_ID = dagerform.distrocts_id";
+    $sql="SELECT dagerform.name_dager, dagerform.idcard,dagerform.address_dager,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,dagerform.tel_dager,dagerform.detail_dager,dagerform.email_dager,dagerform.dager_id,dagerform.responsible FROM dagerform,province,districts,amphur WHERE province.PROVINCE_ID = dagerform.province_id AND amphur.AMPHUR_ID = dagerform.amphur_id AND districts.DISTRICT_ID = dagerform.distrocts_id";
     $result=$conn->query($sql);
     ?>
     <div class="container">
@@ -37,12 +37,12 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4><span class="glyphicon glyphicon-th-list
-    " aria-hidden="true"></span>ข้อมูลแจ้งเหตุอันตราย</h4>
+              <h4><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>ข้อมูลแจ้งเหตุอันตราย</h4>
             </div>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <form name="changdanger" id="changdanger">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -55,12 +55,18 @@
                     <th>เบอร์โทร</th>
                     <th>E-mail</th>
                     <th>ลายละเอียด</th>
+                    <th>หน่วยงานที่เกียวข้อง</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php while($row=$result->fetch_assoc()){?>
+                  <?php
+                  $i =0;
+                  while($row=$result->fetch_assoc()){
+                  $i = $i + 1;
+                  ?>
                   <tr>
                     <td>
+                      <input type="hidden" name="hdnID<?=$i;?>" size="5" value="<?=$row['dager_id'];?>">
                       <?php echo $row['name_dager'];?>
                     </td>
                     <td>
@@ -88,16 +94,16 @@
                       <?php echo $row['detail_dager'];?>
                     </td>
                     <td>
-                      <?php echo $row['detail_dager'];?>
-                    </td>
-                    <td>
-                      <?php echo $row['detail_dager'];?>
+                      <?php require 'selectunit.php'; ?>
                     </td>
                   </tr>
                   <?php } ?>
                 </tbody>
 
               </table>
+              <div align="right"><button align="" type="submit" class="btn btn-default">บันทึก</button></div>
+              <input type="hidden" name="hdnLine" value="<?=$i;?>">
+            </form>
             </div>
 
           </div>
@@ -124,6 +130,26 @@
           }
         });
       });
+
+      $(document).ready(function () {
+             $('#changdanger').submit(function() {
+              var fData = new FormData(document.getElementById("changdanger"));
+               $.ajax({
+        'type':"POST",
+        'url':"updateDanger.php",
+        'data':fData,
+        'contentType':false,
+        'processData':false,
+        'cache':false,
+        'success':function(data) {
+          alert("success");
+        },
+        'error':function(jqXHR,text,error) { alert(error); }
+      });
+      return false;
+
+            });
+        });
     </script>
 </body>
 
