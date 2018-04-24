@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ข้อมูลคำแนะนำ</title>
+  <title>ข้อมูลแจ้งเหตุอันตราย</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="../asset\css\bootstrap.css">
@@ -29,7 +29,7 @@
   <?php
     include("menu.php");
     require_once 'connect.php';
-    $sql="SELECT sugform.name_sug,sugform.idcard_sug,sugform.address_sug, province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,sugform.tel_sug,sugform.email_sug,sugform.detail_sug,sugform.sug_id,sugform.responsible FROM sugform,province,amphur,districts WHERE sugform.province_sug = province.PROVINCE_ID AND sugform.amphur_sug = amphur.AMPHUR_ID AND sugform.districts_sug = districts.DISTRICT_ID";
+    $sql="SELECT dagerform.name_dager, dagerform.idcard,dagerform.address_dager,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,dagerform.tel_dager,dagerform.detail_dager,dagerform.email_dager,dagerform.dager_id,dagerform.status FROM dagerform,province,districts,amphur WHERE province.PROVINCE_ID = dagerform.province_id AND amphur.AMPHUR_ID = dagerform.amphur_id AND districts.DISTRICT_ID = dagerform.distrocts_id";
     $result=$conn->query($sql);
     ?>
     <div class="container">
@@ -37,13 +37,12 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <div class="panel-title">
-              <h4><span class="glyphicon glyphicon-th-list
-    " aria-hidden="true"></span> ข้อมูลคำแนะนำ</h4>
+              <h4><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>ข้อมูลแจ้งเหตุอันตราย</h4>
             </div>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
-              <form name="changsug" id="changsug">
+              <form name="changdanger" id="changdanger">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -61,20 +60,20 @@
                 </thead>
                 <tbody>
                   <?php
-                    $i =0;
-                    while($row=$result->fetch_assoc()){
-                      $i = $i + 1;
-                    ?>
+                  $i =0;
+                  while($row=$result->fetch_assoc()){
+                  $i = $i + 1;
+                  ?>
                   <tr>
                     <td>
-                      <input type="hidden" name="hdnID<?=$i;?>" size="5" value="<?=$row['sug_id'];?>">
-                      <?php echo $row['name_sug'];?>
+                      <input type="hidden" name="hdnID<?=$i;?>" size="5" value="<?=$row['dager_id'];?>">
+                      <?php echo $row['name_dager'];?>
                     </td>
                     <td>
-                      <?php echo $row['idcard_sug'];?>
+                      <?php echo $row['idcard'];?>
                     </td>
                     <td>
-                      <?php echo $row['address_sug'];?>
+                      <?php echo $row['address_dager'];?>
                     </td>
                     <td>
                       <?php echo $row['PROVINCE_NAME'];?>
@@ -86,16 +85,16 @@
                       <?php echo $row['DISTRICT_NAME'];?>
                     </td>
                     <td>
-                      <?php echo $row['tel_sug'];?>
+                      <?php echo $row['tel_dager'];?>
                     </td>
                     <td>
-                      <?php echo $row['email_sug'];?>
+                      <?php echo $row['email_dager'];?>
                     </td>
                     <td>
-                      <?php echo $row['detail_sug'];?>
+                      <?php echo $row['detail_dager'];?>
                     </td>
                     <td>
-                      <?php require 'selectunit.php'; ?>
+                      <?php require 'selectStatus.php'; ?>
                     </td>
                   </tr>
                   <?php } ?>
@@ -133,11 +132,11 @@
       });
 
       $(document).ready(function () {
-             $('#changsug').submit(function() {
-              var fData = new FormData(document.getElementById("changsug"));
+             $('#changdanger').submit(function() {
+              var fData = new FormData(document.getElementById("changdanger"));
                $.ajax({
         'type':"POST",
-        'url':"updateSug.php",
+        'url':"updateDanger.php",
         'data':fData,
         'contentType':false,
         'processData':false,

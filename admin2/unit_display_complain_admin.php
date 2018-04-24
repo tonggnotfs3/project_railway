@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ข้อมูลคำแนะนำ</title>
+  <title>ข้อมูลร้องเรียน</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="../asset\css\bootstrap.css">
@@ -29,7 +29,7 @@
   <?php
     include("menu.php");
     require_once 'connect.php';
-    $sql="SELECT sugform.name_sug,sugform.idcard_sug,sugform.address_sug, province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,sugform.tel_sug,sugform.email_sug,sugform.detail_sug,sugform.sug_id,sugform.responsible FROM sugform,province,amphur,districts WHERE sugform.province_sug = province.PROVINCE_ID AND sugform.amphur_sug = amphur.AMPHUR_ID AND sugform.districts_sug = districts.DISTRICT_ID";
+    $sql="SELECT complaintform.complaint_name,complaintform.personal_id,complaintform.address,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,complaintform.tel,complaintform.email, complainttype.complaint_code,service.service_code,complaintform.description,complaintform.complaintform_id,complaintform.status FROM complaintform,complainttype,amphur,province,districts,service WHERE complaintform.province_id = province.PROVINCE_ID AND districts.DISTRICT_ID = complaintform.districts_id AND amphur.AMPHUR_ID = complaintform.amphur_id AND complaintform.complainttype_id = complainttype.complainttype_id AND complaintform.service_id = service.service_id";
     $result=$conn->query($sql);
     ?>
     <div class="container">
@@ -38,12 +38,12 @@
           <div class="panel-heading">
             <div class="panel-title">
               <h4><span class="glyphicon glyphicon-th-list
-    " aria-hidden="true"></span> ข้อมูลคำแนะนำ</h4>
+    " aria-hidden="true"></span> ข้อมูลร้องเรียน</h4>
             </div>
           </div>
           <div class="panel-body">
             <div class="table-responsive">
-              <form name="changsug" id="changsug">
+              <form name="changcomp" id="changcomp">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -55,26 +55,28 @@
                     <th>ตำบล</th>
                     <th>เบอร์โทร</th>
                     <th>E-mail</th>
+                    <th>ประเภท</th>
+                    <th>หัวข้อ</th>
                     <th>ลายละเอียด</th>
-                    <th>หน่วยงานที่เกียวข้อง</th>
+                    <th>หน่หน่วยงานที่เกียวข้อง</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                     $i =0;
-                    while($row=$result->fetch_assoc()){
-                      $i = $i + 1;
+                  while($row=$result->fetch_assoc()){
+                    $i = $i + 1;
                     ?>
                   <tr>
                     <td>
-                      <input type="hidden" name="hdnID<?=$i;?>" size="5" value="<?=$row['sug_id'];?>">
-                      <?php echo $row['name_sug'];?>
+                      <input type="hidden" name="hdnID<?=$i;?>" size="5" value="<?=$row['complaintform_id'];?>">
+                      <?php echo $row['complaint_name'];?>
                     </td>
                     <td>
-                      <?php echo $row['idcard_sug'];?>
+                      <?php echo $row['personal_id'];?>
                     </td>
                     <td>
-                      <?php echo $row['address_sug'];?>
+                      <?php echo $row['address'];?>
                     </td>
                     <td>
                       <?php echo $row['PROVINCE_NAME'];?>
@@ -86,16 +88,22 @@
                       <?php echo $row['DISTRICT_NAME'];?>
                     </td>
                     <td>
-                      <?php echo $row['tel_sug'];?>
+                      <?php echo $row['tel'];?>
                     </td>
                     <td>
-                      <?php echo $row['email_sug'];?>
+                      <?php echo $row['email'];?>
                     </td>
                     <td>
-                      <?php echo $row['detail_sug'];?>
+                      <?php echo $row['complaint_code'];?>
                     </td>
                     <td>
-                      <?php require 'selectunit.php'; ?>
+                      <?php echo $row['service_code'];?>
+                    </td>
+                    <td>
+                      <?php echo $row['description'];?>
+                    </td>
+                    <td>
+                      <?php require 'selectStatus.php'; ?>
                     </td>
                   </tr>
                   <?php } ?>
@@ -111,6 +119,7 @@
         </div>
       </div>
     </div>
+
     <script>
       $(document).ready(function() {
         $('.table').DataTable({
@@ -132,12 +141,13 @@
         });
       });
 
+
       $(document).ready(function () {
-             $('#changsug').submit(function() {
-              var fData = new FormData(document.getElementById("changsug"));
+             $('#changcomp').submit(function() {
+              var fData = new FormData(document.getElementById("changcomp"));
                $.ajax({
         'type':"POST",
-        'url':"updateSug.php",
+        'url':"updateComplaint.php",
         'data':fData,
         'contentType':false,
         'processData':false,
