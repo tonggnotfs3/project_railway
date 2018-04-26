@@ -14,7 +14,7 @@ $tel = $_POST['tel'];
 $email = $_POST['email'];
   $detail = $_POST['detail'];
 
-		$sql = "INSERT INTO `dagerform` (`name_dager`, `idcard`, `address_dager`, `province_id`, `distrocts_id`, `amphur_id`, `tel_dager`, `detail_dager`, `dager_status`, `email_dager`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$tel','$detail','1', '$email');";
+		$sql = "INSERT INTO `dagerform` (`name_dager`, `idcard`, `address_dager`, `province_id`, `distrocts_id`, `amphur_id`, `tel_dager`, `detail_dager`, `status`, `email_dager`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$tel','$detail','0', '$email');";
 		$data = mysqli_query($conn,$sql);
 
 

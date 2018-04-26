@@ -14,7 +14,7 @@ $tel = $_POST['tel'];
 $email = $_POST['email'];
 $detail = $_POST['detail'];
 
-		$sql = "INSERT INTO `admireform` (`name_admire`, `idcard_admire`, `address_admire`, `province_id`, `districts_id`, `amphur_id`, `tel_admire`, `detail_admire`, `email_admire`, `admire_status`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$tel','$detail','$email', '1');";
+		$sql = "INSERT INTO `admireform` (`name_admire`, `idcard_admire`, `address_admire`, `province_id`, `districts_id`, `amphur_id`, `tel_admire`, `detail_admire`, `email_admire`, `status`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$tel','$detail','$email', '0');";
 		$data = mysqli_query($conn,$sql);
 
 

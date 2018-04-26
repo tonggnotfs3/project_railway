@@ -16,8 +16,8 @@ $complainttype = $_POST['complainttype'];
 $service = $_POST['service'];
 $detail = $_POST['detail'];
 
-		$sql = "INSERT INTO `complaintform` (`complaint_name`, `personal_id`, `address`, `province_id`, `districts_id`, `amphur_id`, `email`,`tel`, `complainttype_id`, `service_id`, `description`,`status_id`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$email','$tel','$complainttype', '$service', '$detail', '1');";
+		$sql = "INSERT INTO `complaintform` (`complaint_name`, `personal_id`, `address`, `province_id`, `districts_id`, `amphur_id`, `email`,`tel`, `complainttype_id`, `service_id`, `description`,`status`) VALUES ('$username', '$idcard', '$address', '$province', '$districts', '$amphur', '$email','$tel','$complainttype', '$service', '$detail', '0');";
 		$data = mysqli_query($conn,$sql);
 
-    
+
 ?>
