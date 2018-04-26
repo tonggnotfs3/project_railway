@@ -105,9 +105,9 @@ function loadDoc4() {
 
   <a data-toggle="collapse" href="#collapse3"  class="list-group-item">&nbsp;ข้อมูลที่ได้รับการจัดการแล้ว</a>
   <div id="collapse3" class="panel-collapse collapse">
-    <a href="display_complain_admin.php"  class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;ร้องเรียน-ร้องทุกข์</a>
-    <a href="display_sug_admin.php"  class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp;แนะนำ</a>
-    <a href="display_danger_admin.php"  class="list-group-item"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;แจ้งแหตุอันตราย</a>
+    <a href="fin_display_complain_admin.php"  class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;ร้องเรียน-ร้องทุกข์</a>
+    <a href="fin_display_sug_admin.php"  class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp;แนะนำ</a>
+    <a href="fin_display_danger_admin.php"  class="list-group-item"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;แจ้งแหตุอันตราย</a>
     <a href="fin_display_admire_admin.php"  class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;ชื่นชม</a>
   </div>
 </div>
