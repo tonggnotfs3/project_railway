@@ -220,6 +220,8 @@
         'cache':false,
         'success':function(data) {
           // window.location="display_complain.php";
+          alert("success");
+          location.reload();
         },
         'error':function(jqXHR,text,error) { alert(error); }
       });

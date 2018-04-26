@@ -30,7 +30,7 @@
     include("menu.php");
     require_once 'connect.php';
     $responsible= $_GET['responsible'];
-    $sql="SELECT dagerform.name_dager, dagerform.idcard,dagerform.address_dager,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,dagerform.tel_dager,dagerform.detail_dager,dagerform.email_dager,dagerform.dager_id,dagerform.status FROM dagerform,province,districts,amphur WHERE province.PROVINCE_ID = dagerform.province_id AND amphur.AMPHUR_ID = dagerform.amphur_id AND districts.DISTRICT_ID = dagerform.distrocts_id AND responsible = $responsible";
+    $sql="SELECT dagerform.name_dager, dagerform.idcard,dagerform.address_dager,province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,dagerform.tel_dager,dagerform.detail_dager,dagerform.email_dager,dagerform.dager_id,dagerform.status FROM dagerform,province,districts,amphur WHERE province.PROVINCE_ID = dagerform.province_id AND amphur.AMPHUR_ID = dagerform.amphur_id AND districts.DISTRICT_ID = dagerform.distrocts_id AND responsible = $responsible AND dagerform.status != 1";
     $result=$conn->query($sql);
     ?>
     <div class="container">
@@ -144,6 +144,7 @@
         'cache':false,
         'success':function(data) {
           alert("success");
+          location.reload();
         },
         'error':function(jqXHR,text,error) { alert(error); }
       });

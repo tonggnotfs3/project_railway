@@ -214,6 +214,8 @@
       'cache':false,
       'success':function(data) {
         // window.location="display_sug.php";
+        alert("success");
+        location.reload();
       },
       'error':function(jqXHR,text,error) { alert(error); }
     });

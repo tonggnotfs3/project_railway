@@ -29,7 +29,7 @@
   <?php
     include("menu.php");
     require_once 'connect.php';
-    $sql="SELECT sugform.name_sug,sugform.idcard_sug,sugform.address_sug, province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,sugform.tel_sug,sugform.email_sug,sugform.detail_sug,sugform.sug_id,sugform.responsible FROM sugform,province,amphur,districts WHERE sugform.province_sug = province.PROVINCE_ID AND sugform.amphur_sug = amphur.AMPHUR_ID AND sugform.districts_sug = districts.DISTRICT_ID";
+    $sql="SELECT sugform.name_sug,sugform.idcard_sug,sugform.address_sug, province.PROVINCE_NAME,amphur.AMPHUR_NAME,districts.DISTRICT_NAME,sugform.tel_sug,sugform.email_sug,sugform.detail_sug,sugform.sug_id,sugform.responsible FROM sugform,province,amphur,districts WHERE sugform.province_sug = province.PROVINCE_ID AND sugform.amphur_sug = amphur.AMPHUR_ID AND sugform.districts_sug = districts.DISTRICT_ID AND sugform.responsible = 0";
     $result=$conn->query($sql);
     ?>
     <div class="container">
@@ -144,6 +144,7 @@
         'cache':false,
         'success':function(data) {
           alert("success");
+          location.reload();
         },
         'error':function(jqXHR,text,error) { alert(error); }
       });
