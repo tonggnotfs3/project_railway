@@ -1,4 +1,4 @@
-<style type="text/css">
+<!-- <style type="text/css">
   .side-bar-active{
     background-color: #f6eacf;
     color:#f6eacf;
@@ -65,12 +65,11 @@ function loadDoc4() {
   xhttp.send();
 
 }
-</script>
+</script> -->
 <div class="list-group">
   <a href="#" class="list-group-item active list-group-item-warning">ประเภท</a>
   <a href="formcomp.php" id="home" class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;ร้องเรียน-ร้องทุกข์</a>
   <a href="formsug.php" id="home" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span>&nbsp;แนะนำ</a>
   <a href="formdager.php" id="home" class="list-group-item"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;แจ้งแหตุอันตราย</a>
   <a href="formadmire.php" id="home" class="list-group-item"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;ชื่นชม</a>
-  <a href="index.php" id="home" class="list-group-item"><span class="glyphicon glyphicon-tag"></span>&nbsp;ติดตามข้อร้องเรียน</a>
 </div>
